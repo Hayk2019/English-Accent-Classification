@@ -11,9 +11,9 @@ from concurrent.futures import ThreadPoolExecutor
 from tqdm import tqdm
 
 # === Папки ===
-INPUT_FOLDER = "audio_files"       # Исходные файлы
-OUTPUT_FOLDER = "filtered_file"   # Обработанные файлы
-INVALID_FOLDER = "invalid_audio"    # Проблемные файлы
+INPUT_FOLDER = "spliced"       # Исходные файлы
+OUTPUT_FOLDER = "home/hayk/Documents/English-Accent-Classification/armenian_dataset/telegram_capture/processed"       # Исходные файлы
+INVALID_FOLDER = "home/hayk/Documents/English-Accent-Classification/armenian_dataset/telegram_capture/invalid"       # Исходные файлы
 
 # === Создаем выходные папки, если их нет ===
 os.makedirs(OUTPUT_FOLDER, exist_ok=True)
@@ -99,7 +99,7 @@ def main():
 
     # === Многопоточная обработка файлов ===
     processed_files = []
-    with ThreadPoolExecutor(max_workers=4) as executor:
+    with ThreadPoolExecutor(max_workers=12) as executor:
         processed_files = list(tqdm(executor.map(process_audio, audio_files), total=len(audio_files)))
 
     # Удаляем None (ошибки обработки)
