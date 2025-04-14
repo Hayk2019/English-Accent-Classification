@@ -2,7 +2,7 @@ import wave
 import contextlib
 import os
 
-directory = "../spanish_dataset/filtered_file"
+directory = "./"
 total_duration = 0.0
 
 for filename in os.listdir(directory):
