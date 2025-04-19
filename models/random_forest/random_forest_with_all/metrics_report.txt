@@ -1,0 +1,18 @@
+Best Parameters:
+{'class_weight': None, 'max_depth': 20, 'min_samples_split': 2, 'n_estimators': 200}
+Best CV Accuracy: 0.8133
+
+Test Accuracy: 81.64%
+
+Classification Report:
+                       precision    recall  f1-score   support
+
+               German     0.9420    0.9373    0.9396       606
+                India     0.7514    0.7362    0.7437       743
+              Spanish     0.7434    0.8458    0.7913       603
+United States English     0.8109    0.7760    0.7930       674
+             armenian     0.8895    0.8053    0.8453       380
+
+             accuracy                         0.8164      3006
+            macro avg     0.8274    0.8201    0.8226      3006
+         weighted avg     0.8190    0.8164    0.8167      3006
