@@ -18,8 +18,8 @@ def generate_csv_from_files(input_dir, output_csv, accent_label="armenian"):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Generate CSV with file names and accent label")
-    parser.add_argument("input_dir", help="Directory containing audio files")
-    parser.add_argument("output_csv", help="Output CSV file name")
+    parser.add_argument("--input_dir", help="Directory containing audio files")
+    parser.add_argument("--output_csv", help="Output CSV file name")
     parser.add_argument("--accent", default="armenian", help="Accent label to use (default: armenian)")
     args = parser.parse_args()
 
