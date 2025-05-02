@@ -5,19 +5,16 @@ import librosa
 from sklearn.preprocessing import LabelEncoder
 from tensorflow.keras.utils import to_categorical
 
-# === Настройки ===
 csv_path = "../dataset/all_data.csv"
-sr = 16000                  # частота дискретизации
-n_mels = 128                # количество мел-фильтров
-max_len = 500               # длина спектрограммы (в кадрах)
+sr = 16000
+n_mels = 128
+max_len = 500
 
-# === Функция спектрограммы фиксированной длины ===
 def audio_to_mel(file_path, sr=16000, n_mels=128, max_len=500):
     y, _ = librosa.load(file_path, sr=sr)
     mel = librosa.feature.melspectrogram(y=y, sr=sr, n_mels=n_mels)
     mel_db = librosa.power_to_db(mel, ref=np.max)
 
-    # Приводим к фиксированной длине
     if mel_db.shape[1] < max_len:
         pad_width = max_len - mel_db.shape[1]
         mel_db = np.pad(mel_db, pad_width=((0, 0), (0, pad_width)), mode='constant')
@@ -26,7 +23,6 @@ def audio_to_mel(file_path, sr=16000, n_mels=128, max_len=500):
 
     return mel_db
 
-# === Загрузка и обработка ===
 df = pd.read_csv(csv_path)
 X = []
 y = []
@@ -44,22 +40,19 @@ for idx, row in df.iterrows():
         X.append(mel)
         y.append(label)
     except Exception as e:
-        print(f"❌ Ошибка с {path}: {e}")
+        print(f"Error with: {path}: {e}")
 
-# === Преобразуем в массивы ===
-X = np.array(X)[..., np.newaxis]  # добавляем канал для CNN
-print("✅ X shape:", X.shape)
+X = np.array(X)[..., np.newaxis]
+print("X shape:", X.shape)
 
-# === Кодируем метки ===
 encoder = LabelEncoder()
 y_encoded = encoder.fit_transform(y)
 y_cat = to_categorical(y_encoded)
-print("✅ y shape:", y_cat.shape)
+print("y shape:", y_cat.shape)
 
-# === Сохраняем ===
 np.save("X_melspec.npy", X)
 np.save("y_onehot.npy", y_cat)
 np.save("label_classes.npy", encoder.classes_)
 print(np.load("label_classes.npy"))
-print("✅ Датасет сохранён!")
+print("Dataset Saved!")
 

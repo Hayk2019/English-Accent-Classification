@@ -14,11 +14,11 @@ def merge_wav_files(wav_files):
 def export_chunk(index, chunk, output_dir):
     output_file = output_dir / f"chunk_{index:04d}.wav"
     chunk.export(output_file, format="wav")
-    return f"✅ Saved: {output_file}"
+    return f"Saved: {output_file}"
 
 def split_and_export(audio, chunk_length_ms, output_dir, workers):
     total_chunks = math.ceil(len(audio) / chunk_length_ms)
-    print(f"🔪 Splitting into {total_chunks} chunks...")
+    print(f"Splitting into {total_chunks} chunks...")
 
     with ProcessPoolExecutor(max_workers=workers) as executor:
         futures = []
@@ -46,13 +46,13 @@ if __name__ == "__main__":
 
     wav_files = sorted(input_dir.glob("*.wav"))
     if not wav_files:
-        print("❌ No .wav files found.")
+        print("No .wav files found.")
         exit(1)
 
-    print(f"🔄 Merging {len(wav_files)} files...")
+    print(f"Merging {len(wav_files)} files...")
     merged_audio = merge_wav_files(wav_files)
 
     split_and_export(merged_audio, args.chunk_length, output_dir, args.workers)
 
-    print("🎉 Done!")
+    print("Done!")
 

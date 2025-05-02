@@ -6,7 +6,6 @@ import librosa.display
 from tqdm import tqdm
 import argparse
 
-# === Аргументы командной строки ===
 parser = argparse.ArgumentParser(description="Extract audio features from WAV files.")
 parser.add_argument("--audio_folder", type=str, required=True, help="Folder with processed audio files")
 parser.add_argument("--csv_file", type=str, required=True, help="CSV file with metadata (columns: path, accent )")
@@ -18,14 +17,11 @@ AUDIO_FOLDER = args.audio_folder
 CSV_FILE = args.csv_file
 OUTPUT_CSV = args.output_csv
 
-# === Загружаем CSV ===
 df = pd.read_csv(CSV_FILE)
 
-# === Проверяем, какие файлы есть ===
 existing_files = set(os.listdir(AUDIO_FOLDER))
 df = df[df["path"].isin(existing_files)]  # Оставляем только файлы, которые есть в папке
 
-# === Функция для извлечения признаков ===
 def extract_features(file_path):
     try:
         y, sr = librosa.load(file_path, sr=16000, mono=True)
@@ -63,7 +59,6 @@ def extract_features(file_path):
         print(f"[ERROR] Failed to process {file_path}: {e}")
         return None
 
-# === Извлекаем признаки из всех файлов ===
 feature_columns = [f"mfcc_{i}_mean" for i in range(13)] + \
                   [f"mfcc_{i}_std" for i in range(13)] + \
                   ["mel_mean", "mel_std", "chroma_mean", "chroma_std", "zcr_mean", "zcr_std", "rms_mean", "rms_std"]
@@ -75,7 +70,6 @@ for _, row in tqdm(df.iterrows(), total=len(df)):
     if features is not None:
         feature_data.append([row["path"], row["accent"]] + list(features))
 
-# === Сохраняем в новый CSV ===
 df_features = pd.DataFrame(feature_data, columns=["path", "accent"] + feature_columns)
 df_features.to_csv(OUTPUT_CSV, index=False)
 

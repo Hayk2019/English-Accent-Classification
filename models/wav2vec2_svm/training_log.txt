@@ -1,0 +1,105 @@
+
+Fold 1
+                 precision    recall  f1-score   support
+
+         German       0.99      0.99      0.99       605
+          India       0.98      0.90      0.94      1144
+        Spanish       0.88      0.96      0.92       603
+     US_english       1.00      1.00      1.00       769
+       armenian       0.87      0.96      0.91       380
+british_english       1.00      1.00      1.00       329
+
+       accuracy                           0.96      3830
+      macro avg       0.95      0.97      0.96      3830
+   weighted avg       0.96      0.96      0.96      3830
+
+
+Fold 2
+                 precision    recall  f1-score   support
+
+         German       0.99      1.00      1.00       606
+          India       0.98      0.91      0.94      1143
+        Spanish       0.88      0.95      0.92       603
+     US_english       1.00      1.00      1.00       768
+       armenian       0.89      0.96      0.93       380
+british_english       1.00      1.00      1.00       330
+
+       accuracy                           0.96      3830
+      macro avg       0.96      0.97      0.96      3830
+   weighted avg       0.96      0.96      0.96      3830
+
+
+Fold 3
+                 precision    recall  f1-score   support
+
+         German       1.00      0.99      0.99       606
+          India       0.97      0.90      0.93      1144
+        Spanish       0.88      0.93      0.90       603
+     US_english       1.00      1.00      1.00       768
+       armenian       0.84      0.97      0.90       379
+british_english       1.00      1.00      1.00       330
+
+       accuracy                           0.95      3830
+      macro avg       0.95      0.96      0.96      3830
+   weighted avg       0.96      0.95      0.95      3830
+
+
+Fold 4
+                 precision    recall  f1-score   support
+
+         German       0.99      1.00      0.99       606
+          India       0.99      0.89      0.94      1144
+        Spanish       0.86      0.96      0.91       603
+     US_english       1.00      1.00      1.00       768
+       armenian       0.86      0.96      0.91       379
+british_english       1.00      1.00      1.00       330
+
+       accuracy                           0.96      3830
+      macro avg       0.95      0.97      0.96      3830
+   weighted avg       0.96      0.96      0.96      3830
+
+
+Fold 5
+                 precision    recall  f1-score   support
+
+         German       0.99      1.00      1.00       605
+          India       0.99      0.90      0.94      1144
+        Spanish       0.87      0.95      0.91       602
+     US_english       1.00      1.00      1.00       769
+       armenian       0.88      0.97      0.92       380
+british_english       1.00      1.00      1.00       330
+
+       accuracy                           0.96      3830
+      macro avg       0.95      0.97      0.96      3830
+   weighted avg       0.96      0.96      0.96      3830
+
+
+Metrics saved to 'metrics_summary.csv'.
+
+Average F1-score across folds per class:
+German: 0.9937
+India: 0.9398
+Spanish: 0.9101
+US_english: 1.0000
+armenian: 0.9141
+british_english: 1.0000
+
+Average metrics across folds:
+Accuracy: 0.9580
+Precision (macro): 0.9531
+Recall (macro): 0.9680
+F1-score (macro): 0.9596
+
+Evaluation on unseen class (masked class):
+Number of test samples: 1650
+british_english    792
+armenian           366
+US_english         229
+Spanish            160
+India               77
+German              26
+Name: count, dtype: int64
+
+Confusion matrices have been saved as 'confusion_matrix_counts.png' and 'confusion_matrix_normalized.png'.
+
+Fold metrics plot saved as 'metrics_per_fold.png'.

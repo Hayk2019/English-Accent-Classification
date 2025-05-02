@@ -23,9 +23,9 @@ def remove_silence_file(file_path_str, output_dir_str, threshold, min_len, keep)
             processed_audio += chunk
 
         processed_audio.export(output_path, format="wav")
-        return f"✅ Saved: {output_path}"
+        return f"Saved: {output_path}"
     except Exception as e:
-        return f"❌ Error processing {file_path_str}: {e}"
+        return f"Error processing {file_path_str}: {e}"
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Remove silence from audio files using multiprocessing.")

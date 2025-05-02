@@ -12,7 +12,7 @@ def merge_csv(csv1_path, csv2_path, output_path, how="inner", on=None):
         merged_df = pd.concat([df1, df2], ignore_index=True)
 
     merged_df.to_csv(output_path, index=False)
-    print(f"✅ Merged CSV saved to: {output_path}")
+    print(f"Merged CSV saved to: {output_path}")
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Merge two CSV files")
